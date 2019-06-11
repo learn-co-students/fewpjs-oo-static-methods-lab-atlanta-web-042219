@@ -5,22 +5,24 @@ class Formatter {
   }
 
   static sanitize(str) {
-    return str.replace(/\W/g, '')
+    return str.replace(/[^A-Za-z0-9 '-]/g, '')
   }
 
-  static titlized(str) {
-    let noCap = ["a", "an", "but", "of", "and", "for", "at", "by", "from"]
+  static titleize(str) {
+    let noCap = ['the', 'a', 'an', 'but', 'of', 'and', 'for', 'at', 'by', 'from']
     let words = str.split(" ")
     
      return words.map(w => { 
       let nope = noCap.find(n => n === w) 
-      if (nope === undefined || nope === null) {
+      if (nope === undefined || nope === null || nope === words[0] ) {
         return this.capitalize(w)
       } else {
         return w
       }
     }).join(" ")
+
   }
+
 }
 
 
